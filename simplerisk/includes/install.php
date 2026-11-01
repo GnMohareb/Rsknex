@@ -1887,19 +1887,12 @@ function installer_check_simplerisk_directory_permissions()
         $array[] = array("result" => 0, "text" => "The SimpleRisk directory (" . $simplerisk_dir . ") is not writeable by the web user.");
     }
 
-    $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($simplerisk_dir), RecursiveIteratorIterator::SELF_FIRST);
-
-    foreach ($objects as $name => $object)
+    // Only verify the top-level application directory is writable; a full
+    // recursive walk over the entire (potentially large) tree is unnecessary
+    // and can exceed PHP max_execution_time on large checkouts.
+    if (!is_writeable($simplerisk_dir))
     {
-        // Do not check the directory above the SimpleRisk directory
-        if ($name != $simplerisk_dir . "/..")
-        {
-            // If the directory is writeable
-            if (!is_writeable($name))
-            {
-                $array[] = array("result" => 0, "text" => $name . " is not writeable by the web user.");
-            }
-        }
+        $array[] = array("result" => 0, "text" => $simplerisk_dir . " is not writeable by the web user.");
     }
 
     return $array;
