@@ -6,3 +6,5 @@
 | G0 license | IN_PROGRESS | 531b239 | n/a | docs/audit/LICENSE_AND_DEPENDENCIES.md | vendor inventory pending |
 | G0 local build | TESTED (dev MySQL 8.0 on 3307; DB connectivity verified) | - | - | - | MySQL binary missing |
 
+
+- Baseline: installer page renders HTTP 200 via php -S; config.php regenerated; DB connectivity verified. Full schema install via installer form pending manual completion.
