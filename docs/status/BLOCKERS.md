@@ -5,3 +5,5 @@
 - No CI configured yet.
 
 - MySQL root credentials unknown; cannot verify clean install.
+
+- PHP 8.4 (WindowsApps) lacks pdo_mysql, mbstring, curl, zip, gd, ldap, posix, max_input_vars; Laragon php 8.3 has no binary. Installing extensions or alternative PHP required for full install.
